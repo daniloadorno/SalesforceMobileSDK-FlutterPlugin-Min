@@ -31,9 +31,6 @@
 @interface SalesforcePlugin ()
 
 @property(nonatomic, strong, readwrite) SFOauthFlutterBridge* oauthBridge;
-@property(nonatomic, strong, readwrite) SFNetFlutterBridge* networkBridge;
-@property(nonatomic, strong, readwrite) SFSmartStoreFlutterBridge* smartstoreBridge;
-@property(nonatomic, strong, readwrite) SFSmartSyncFlutterBridge* smartsyncBridge;
 
 @end
 
@@ -50,9 +47,6 @@
     self = [super init];
     if (self) {
         self.oauthBridge = [SFOauthFlutterBridge new];
-        self.networkBridge = [SFNetFlutterBridge new];
-        self.smartstoreBridge = [SFSmartStoreFlutterBridge new];
-        self.smartsyncBridge = [SFSmartSyncFlutterBridge new];
     }
     return self;
 }
@@ -60,7 +54,7 @@
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
     NSString* prefix = [call.method componentsSeparatedByString:@"#"][0];
     
-    for (SFNetFlutterBridge* bridge in @[self.oauthBridge, self.networkBridge, self.smartstoreBridge, self.smartsyncBridge]) {
+    for (SFNetFlutterBridge* bridge in @[self.oauthBridge]) {
         if ([prefix isEqualToString:bridge.prefix]) {
             [bridge handleMethodCall:call result:result];
             return;
