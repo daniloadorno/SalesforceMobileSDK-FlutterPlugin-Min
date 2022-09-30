@@ -22,7 +22,7 @@ class ContactsPageState extends State<ContactsPage> {
     super.initState();
   }
 
-  Future<List<Contact>?> fetchData() async {
+  /*Future<List<Contact>?> fetchData() async {
     print("fetchData");
     try {
       //Query test
@@ -33,7 +33,7 @@ class ContactsPageState extends State<ContactsPage> {
     } on Exception catch (e){
       throw new Exception(e);
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,10 @@ class ContactsPageState extends State<ContactsPage> {
       appBar: AppBar(
         title: Text("Contacts"),
       ),
-      body: FutureBuilder(
+      body: Center(
+        child: Text("Test"),
+      )
+      /*FutureBuilder(
         future: fetchData(),
         builder: (BuildContext context, AsyncSnapshot<List<Contact>?> snapshot){
           if (snapshot.connectionState == ConnectionState.done && snapshot.hasData){
@@ -66,7 +69,7 @@ class ContactsPageState extends State<ContactsPage> {
             child: CircularProgressIndicator(),
           );
         },
-      ),
+      )*/,
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           setState(() {});

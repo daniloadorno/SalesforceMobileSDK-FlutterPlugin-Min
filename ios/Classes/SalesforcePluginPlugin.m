@@ -24,9 +24,6 @@
 
 #import "SalesforcePlugin.h"
 #import "SFOauthFlutterBridge.h"
-#import "SFNetFlutterBridge.h"
-#import "SFSmartStoreFlutterBridge.h"
-#import "SFSmartSyncFlutterBridge.h"
 
 @interface SalesforcePlugin ()
 
@@ -49,18 +46,6 @@
         self.oauthBridge = [SFOauthFlutterBridge new];
     }
     return self;
-}
-
-- (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
-    NSString* prefix = [call.method componentsSeparatedByString:@"#"][0];
-    
-    for (SFNetFlutterBridge* bridge in @[self.oauthBridge]) {
-        if ([prefix isEqualToString:bridge.prefix]) {
-            [bridge handleMethodCall:call result:result];
-            return;
-        }
-    }
-    result(FlutterMethodNotImplemented);
 }
 
 @end
