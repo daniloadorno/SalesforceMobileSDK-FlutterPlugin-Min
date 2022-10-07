@@ -9,12 +9,16 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/forcedotcom/SalesforceMobileSDK-FlutterPlugin"
   s.license          = { :type => "Salesforce.com Mobile SDK License", :file => "../LICENSE.md" }
   s.author           = { "Wolfgang Mathurin" => "wmathurin@salesforce.com" }
-  s.source           = { :path => '.' }
+  s.source           = { :path => '../' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
+  s.dependency 'SalesforceSDKCommon'
   s.dependency 'SalesforceSDKCore'
+  s.dependency 'SalesforceAnalytics'
+  s.dependency 'SmartStore'
+  s.dependency 'MobileSync'
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '14.0'
 end
 
