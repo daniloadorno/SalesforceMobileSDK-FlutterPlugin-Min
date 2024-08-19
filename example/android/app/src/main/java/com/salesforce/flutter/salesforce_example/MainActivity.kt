@@ -1,6 +1,6 @@
 package com.salesforce.flutter.salesforce_example
 
-import com.salesforce.flutter.ui.SalesforceFlutterActivity
+import com.salesforce.flutter.salesforce.ui.SalesforceFlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugins.GeneratedPluginRegistrant
 

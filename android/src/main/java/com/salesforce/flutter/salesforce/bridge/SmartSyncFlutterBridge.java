@@ -19,27 +19,43 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.salesforce.flutter.bridge;
+package com.salesforce.flutter.salesforce.bridge;
 
 import androidx.annotation.NonNull;
 
-import com.salesforce.flutter.ui.SalesforceFlutterActivity;
+import com.salesforce.flutter.salesforce.ui.SalesforceFlutterActivity;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
 /**
- * Abstract super class for all Salesforce Flutter bridges
+ * Flutter bridge for smartsync operations
  */
-public abstract class SalesforceFlutterBridge {
+public class SmartSyncFlutterBridge extends SalesforceFlutterBridge {
 
-    protected final SalesforceFlutterActivity currentActivity;
+    public static final String PREFIX = "smartsync";
 
-    public SalesforceFlutterBridge(SalesforceFlutterActivity currentActivity) {
-        this.currentActivity = currentActivity;
+    private enum Method {
+
     }
 
-    public abstract void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result);
+    private static final String TAG = "SmartSyncFlutterBridge";
 
-    public abstract String getPrefix();
+    public SmartSyncFlutterBridge(SalesforceFlutterActivity currentActivity) {
+        super(currentActivity);
+    }
+
+    @Override
+    public String getPrefix() {
+        return PREFIX;
+    }
+
+    @Override
+    public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
+        Method method = Method.valueOf(call.method.substring(PREFIX.length() + 1));
+        switch(method) {
+            default:
+                result.notImplemented();
+        }
+    }
 }

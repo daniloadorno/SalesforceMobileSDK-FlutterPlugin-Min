@@ -24,7 +24,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.salesforce.flutter.ui;
+package com.salesforce.flutter.salesforce.ui;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -32,13 +32,11 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.salesforce.androidsdk.app.SalesforceSDKManager;
-import com.salesforce.androidsdk.mobilesync.util.MobileSyncLogger;
 import com.salesforce.androidsdk.rest.ClientManager;
 import com.salesforce.androidsdk.rest.RestClient;
 import com.salesforce.androidsdk.ui.SalesforceActivityDelegate;
 import com.salesforce.androidsdk.ui.SalesforceActivityInterface;
-import com.salesforce.androidsdk.util.SalesforceSDKLogger;
-import com.salesforce.flutter.R;
+import com.salesforce.flutter.salesforce.R;
 
 import io.flutter.embedding.android.FlutterActivity;
 
@@ -67,9 +65,6 @@ public abstract class SalesforceFlutterActivity extends FlutterActivity implemen
         super.onCreate(savedInstanceState);
         this.delegate.onCreate();
         this.clientManager = buildClientManager();
-
-        boolean isDarkTheme = SalesforceSDKManager.getInstance().isDarkTheme();
-        setTheme(isDarkTheme ? R.style.SalesforceSDK_Dark : R.style.SalesforceSDK);
         // This makes the navigation bar visible on light themes.
         SalesforceSDKManager.getInstance().setViewNavigationVisibility(this);
     }

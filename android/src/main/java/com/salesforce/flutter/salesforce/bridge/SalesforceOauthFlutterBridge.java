@@ -19,17 +19,17 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.salesforce.flutter.bridge;
+package com.salesforce.flutter.salesforce.bridge;
 
-import static com.salesforce.flutter.ui.SalesforceFlutterActivity.getRestClient;
-import static com.salesforce.flutter.ui.SalesforceFlutterActivity.setRestClient;
+import static com.salesforce.flutter.salesforce.ui.SalesforceFlutterActivity.getRestClient;
+import static com.salesforce.flutter.salesforce.ui.SalesforceFlutterActivity.setRestClient;
 
 import androidx.annotation.NonNull;
 
 import com.salesforce.androidsdk.app.SalesforceSDKManager;
 import com.salesforce.androidsdk.rest.RestClient;
 import com.salesforce.androidsdk.util.SalesforceSDKLogger;
-import com.salesforce.flutter.ui.SalesforceFlutterActivity;
+import com.salesforce.flutter.salesforce.ui.SalesforceFlutterActivity;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;

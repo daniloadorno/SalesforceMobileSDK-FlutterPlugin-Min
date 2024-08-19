@@ -1,25 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'package:salesforce/salesforce_platform_interface.dart';
 
 class SalesforcePlugin {
 
-  factory SalesforcePlugin() {
-    _singleton ??= SalesforcePlugin._(const MethodChannel('com.salesforce.flutter.SalesforcePlugin'));
-    return _singleton!;
-  }
-
-  SalesforcePlugin._(MethodChannel channel) : _channel = channel;
-
-  static SalesforcePlugin? _singleton;
-
-  static SalesforcePlugin get _platform => SalesforcePlugin.instance;
-
-  static SalesforcePlugin _instance = SalesforcePlugin();
-  static SalesforcePlugin get instance => _instance;
-
-  final MethodChannel _channel;
-  static String _apiVersion = 'v52.0';
+  static String _apiVersion = 'v58.0';
 
   /*
    * Set apiVersion to be used
@@ -46,21 +30,8 @@ class SalesforcePlugin {
    * @param returnBinary When true response returned as {encodedBody:"base64-encoded-response", contentType:"content-type"}
   */
 
-  static Future<Map> sendRequest({String endPoint = '/services/data', String path = '', String method = 'GET', Map? payload, Map? headerParams, Map? fileParams, bool returnBinary = false}) async {
-    final Object response = await _platform._channel.invokeMethod(
-        'network#sendRequest',
-        <String, dynamic>{
-          'endPoint': endPoint,
-          'path': path,
-          'method': method,
-          'queryParams': payload,
-          'headerParams': headerParams,
-          'fileParams': fileParams,
-          'returnBinary': returnBinary}
-    );
-    final responseBody = response is Map ? response : json.decode(response.toString());
-    return responseBody is List ? Map.fromIterable(responseBody) : responseBody;
-  }
+  static Future<Map> sendRequest({String endPoint = '/services/data', String path = '', String method = 'GET', Map? payload, Map? headerParams, Map? fileParams, bool returnBinary = false}) =>
+      SalesforcePluginPlatform.instance.sendRequest(endPoint: endPoint, path: path, method: method, payload: payload, headerParams: headerParams, fileParams: fileParams, returnBinary: returnBinary);
 
   /*
    * Lists summary information about each Salesforce.com version currently
@@ -228,27 +199,14 @@ class SalesforcePlugin {
    *   community id
    *   community url
    */
-  static Future<Map> getAuthCredentials() async {
-    final Object? response = await _platform._channel.invokeMethod(
-        'oauth#getAuthCredentials'
-    );
-    return response is Map ? response : json.decode(response?.toString() ?? '');
-  }
 
-  static Future<Object> getClientInfo() async {
-    final Object response = await _platform._channel.invokeMethod(
-        'oauth#getClientInfo'
-    );
-    return response;
-  }
+  static Future<Map> getAuthCredentials() => SalesforcePluginPlatform.instance.getAuthCredentials();
 
-  static Future<void> authenticate() async {
-    await _platform._channel.invokeMethod('oauth#authenticate');
-  }
+  static Future<Object> getClientInfo() => SalesforcePluginPlatform.instance.getClientInfo();
 
-  static Future<void> logoutCurrentUser() async {
-    await _platform._channel.invokeMethod('oauth#logoutCurrentUser');
-  }
+  static Future<void> authenticate() => SalesforcePluginPlatform.instance.authenticate();
+
+  static Future<void> logoutCurrentUser() => SalesforcePluginPlatform.instance.logoutCurrentUser();
 
   static Future<Map> registerForNotifications(String token, String? communityId, String packageName) async {
     final Map<String, dynamic> fields = {

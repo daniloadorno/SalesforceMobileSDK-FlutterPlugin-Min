@@ -19,43 +19,27 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.salesforce.flutter.bridge;
+package com.salesforce.flutter.salesforce.bridge;
 
 import androidx.annotation.NonNull;
 
-import com.salesforce.flutter.ui.SalesforceFlutterActivity;
+import com.salesforce.flutter.salesforce.ui.SalesforceFlutterActivity;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
 /**
- * Flutter bridge for smartstore operations
+ * Abstract super class for all Salesforce Flutter bridges
  */
-public class SmartStoreFlutterBridge extends SalesforceFlutterBridge {
+public abstract class SalesforceFlutterBridge {
 
-    public static final String PREFIX = "smartstore";
+    protected final SalesforceFlutterActivity currentActivity;
 
-    private enum Method {
-
+    public SalesforceFlutterBridge(SalesforceFlutterActivity currentActivity) {
+        this.currentActivity = currentActivity;
     }
 
-    private static final String TAG = "SmartStoreFlutterBridge";
+    public abstract void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result);
 
-    public SmartStoreFlutterBridge(SalesforceFlutterActivity currentActivity) {
-        super(currentActivity);
-    }
-
-    @Override
-    public String getPrefix() {
-        return PREFIX;
-    }
-
-    @Override
-    public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
-        Method method = Method.valueOf(call.method.substring(PREFIX.length() + 1));
-        switch(method) {
-            default:
-                result.notImplemented();
-        }
-    }
+    public abstract String getPrefix();
 }

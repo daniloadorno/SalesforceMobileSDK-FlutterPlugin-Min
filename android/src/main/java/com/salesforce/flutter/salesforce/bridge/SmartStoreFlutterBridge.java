@@ -19,29 +19,29 @@
  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
  WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.salesforce.flutter.bridge;
+package com.salesforce.flutter.salesforce.bridge;
 
 import androidx.annotation.NonNull;
 
-import com.salesforce.flutter.ui.SalesforceFlutterActivity;
+import com.salesforce.flutter.salesforce.ui.SalesforceFlutterActivity;
 
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
 /**
- * Flutter bridge for smartsync operations
+ * Flutter bridge for smartstore operations
  */
-public class SmartSyncFlutterBridge extends SalesforceFlutterBridge {
+public class SmartStoreFlutterBridge extends SalesforceFlutterBridge {
 
-    public static final String PREFIX = "smartsync";
+    public static final String PREFIX = "smartstore";
 
     private enum Method {
 
     }
 
-    private static final String TAG = "SmartSyncFlutterBridge";
+    private static final String TAG = "SmartStoreFlutterBridge";
 
-    public SmartSyncFlutterBridge(SalesforceFlutterActivity currentActivity) {
+    public SmartStoreFlutterBridge(SalesforceFlutterActivity currentActivity) {
         super(currentActivity);
     }
 
