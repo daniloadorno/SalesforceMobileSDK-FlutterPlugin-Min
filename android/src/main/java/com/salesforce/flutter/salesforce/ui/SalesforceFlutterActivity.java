@@ -182,9 +182,7 @@ public abstract class SalesforceFlutterActivity extends FlutterActivity implemen
     }
 
     protected ClientManager buildClientManager() {
-        return new ClientManager(this, SalesforceSDKManager.getInstance().getAccountType(),
-                SalesforceSDKManager.getInstance().getLoginOptions(),
-                SalesforceSDKManager.getInstance().shouldLogoutWhenTokenRevoked());
+        return new ClientManager(this, SalesforceSDKManager.getInstance().getAccountType(), SalesforceSDKManager.getInstance().shouldLogoutWhenTokenRevoked());
     }
 
     protected void login() {

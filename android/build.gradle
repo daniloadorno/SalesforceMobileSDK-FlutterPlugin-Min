@@ -26,15 +26,15 @@ android {
         namespace = "com.salesforce.flutter.salesforce"
     }
 
-    compileSdk 34
+    compileSdk 35
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     defaultConfig {
-        minSdk 26
+        minSdk 28
     }
 
     dependencies {
@@ -54,8 +54,8 @@ android {
 }
 
 dependencies {
-    implementation "com.salesforce.mobilesdk:SalesforceSDK:12.1.0"
-    implementation "com.salesforce.mobilesdk:SalesforceAnalytics:12.1.0"
-    implementation "com.salesforce.mobilesdk:SmartStore:12.1.0"
-    implementation "com.salesforce.mobilesdk:MobileSync:12.1.0"
+    implementation "com.salesforce.mobilesdk:SalesforceSDK:13.0.1"
+    implementation "com.salesforce.mobilesdk:SalesforceAnalytics:13.0.1"
+    implementation "com.salesforce.mobilesdk:SmartStore:13.0.1"
+    implementation "com.salesforce.mobilesdk:MobileSync:13.0.1"
 }
